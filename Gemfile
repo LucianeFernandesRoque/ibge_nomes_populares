@@ -11,3 +11,7 @@ gem 'faraday', '~> 0.9.2'
 gem 'sqlite3'
 
 gem 'simplecov', require: false, group: :test
+
+
+
+

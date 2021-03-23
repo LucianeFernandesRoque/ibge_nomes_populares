@@ -11,11 +11,12 @@ class IbgeDados
 
   def self.sigla_nome
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/distritos?orderBy=nome')
-
+    dados = []
     json = JSON.parse( response.body, symbolize_names: true )
     result = json.map do |result|
-    result = new(item[ :id, :sigla, :nome])
-    end
-    result
+    dados << new(id: item[ :id], sigla: item[:sigla], nome: item[:nome])   
+     end
   end
+    dados
+
 end
