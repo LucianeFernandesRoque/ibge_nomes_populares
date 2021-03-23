@@ -1,0 +1,2 @@
+class AllStates < IbgeDados
+end

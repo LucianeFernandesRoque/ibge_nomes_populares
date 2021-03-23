@@ -1,0 +1,2 @@
+class IbgeDados
+end
