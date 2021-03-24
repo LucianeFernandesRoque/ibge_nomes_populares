@@ -1,2 +1,3 @@
 class AllCities < IbgeDados
 end
+

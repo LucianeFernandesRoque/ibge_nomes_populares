@@ -1,2 +1,2 @@
-class AllStates < IbgeDados
+class IbgeEstados
 end
