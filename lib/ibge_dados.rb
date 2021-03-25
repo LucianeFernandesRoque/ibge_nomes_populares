@@ -1,19 +1,26 @@
-class IbgeDados:Class
+require 'faraday'
+class IbgeDados
   attr_accessor  :id, :sigla , :nome
 
   #variaveis da classe
-  def initialize(id, sigla, nome )
+
+  def initialize(id, sigla, nome)
     @id = id
     @sigla = sigla
-    @nome = nome 
+    @nome = nome  
   end
 
 
   def self.all
-    response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/distritos?orderBy=nome')
-    
-     result = json.map do |item|
-     item = new(item[:id], item[:sigla], item[:nome])
+    estado = []
+    response << Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+    response = json.map do |item|
+    estado << response.new(item[:id], item[:sigla], item[:nome])
   end
+  end
+ 
+p estado.body
+   
 end
-end
+
+

@@ -1,3 +1,0 @@
-class AllCities < IbgeDados
-end
-
