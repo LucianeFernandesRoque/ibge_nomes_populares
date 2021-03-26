@@ -15,3 +15,7 @@ gem 'simplecov', require: false, group: :test
 
 gem 'jbuilder', '~> 2.7'
 
+gem 'factory_bot'
+
+gem 'cucumber'
+
