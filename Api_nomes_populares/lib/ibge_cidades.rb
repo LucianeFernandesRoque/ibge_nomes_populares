@@ -10,8 +10,13 @@ class IbgeCidades
   end
 
   def self.cidades_all
-  response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome
-')
+    response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/localidades/municipios?orderBy=nome')
+
+    json = JSON.parse(response.body, symbolize_names: true)
+    result = json.map do |dado|
+      dado = new(dado[:id], dado[:nome])
   end
-end
+
+
 p IbgeCidades.cidades_all
+end
