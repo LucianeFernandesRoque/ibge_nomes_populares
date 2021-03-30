@@ -12,7 +12,7 @@ class IbgeDados
     dados = dados[:id],dados[:sigla],dados[:nome]
   end 
   end
-    print estados_all
+     p estados_all.length
 
   def self.municipios_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
@@ -21,5 +21,4 @@ class IbgeDados
     cidades = cidades[:id],cidades[:nome],cidades[:microrregiao][:mesorregiao][:UF][:id]  
   end
   end
-    print municipios_all
  end

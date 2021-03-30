@@ -1,8 +1,0 @@
-  def self.estados_all
-    response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome') 
-    db = SQLite3::Database.open "db/database.db"
-    db.results_as_hash = true 
-    response = db.execute "SELECT id, sigla, nome FROM estados"
-    db.close
-    response.map {|response| new(id: response['id'], sigla: response['sigla'], nome: response['nome'])}
-  end
