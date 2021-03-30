@@ -4,15 +4,6 @@ require 'json'
 class IbgeDados
     attr_accessor  :id, :sigla , :nome
 
-  def initialize(municipio,nome,sigla)
-    @id = id
-    @municipio = municipio
-    @UF = uf
-    @nome = nome
-    @sigla = sigla
-  
-
-  end
 
   def self.estados_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome') 
@@ -21,17 +12,14 @@ class IbgeDados
     dados = dados[:id],dados[:sigla],dados[:nome]
   end 
   end
-    p self.estados_all
+    print estados_all
 
-  def self.cidades_all
+  def self.municipios_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |cidades|
-    cidades = cidades[:id],cidades[:nome]
-
+    cidades = cidades[:id],cidades[:nome],cidades[:microrregiao][:mesorregiao][:UF][:id]  
   end
   end
-  p self.cidades_all
-
-end
-
+    print municipios_all
+ end
