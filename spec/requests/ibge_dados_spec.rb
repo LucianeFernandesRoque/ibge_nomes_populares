@@ -4,7 +4,7 @@ require 'json'
 require 'spec_helper'
 
   describe 'IbgeDados' do
-  context 'validação da Api'
+  context 'validação da Api'do
 
   it 'fazer uma requisição da ApiEstados e validar o status' do
 
@@ -12,6 +12,7 @@ require 'spec_helper'
 
     expect(response.status).to eq(200)
     expect(response.status).not_to eq(404)
+  end
   end
   
 
