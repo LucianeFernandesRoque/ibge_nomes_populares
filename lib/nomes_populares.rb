@@ -1,4 +1,5 @@
   require 'io/console'
+  require_relative 'ibge_dados'
 
   def welcome
     'Bem vindo ao sistema nomes mais comuns do Brasil'

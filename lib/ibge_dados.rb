@@ -3,7 +3,14 @@ require 'sqlite3'
 require 'json'
 class IbgeDados
     attr_accessor  :id, :sigla , :nome
-
+  def initialize
+    @id = id
+    @sigla = sigla
+    @nome = nome
+    @cidade_id = cidade_id
+    @cidade_nome = cidade_nome
+    @id_uf = id_uf
+  end
 
   def self.estados_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome') 

@@ -1,4 +1,10 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env sh
+set -e
+
+bundle install
+
+echo
+echo '== Tudo configurado, pode iniciar ;) ==
 
 
     

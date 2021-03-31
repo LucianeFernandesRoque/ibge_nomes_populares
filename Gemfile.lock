@@ -60,6 +60,7 @@ GEM
       middleware
       thor
       thread_safe
+    rake (13.0.3)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -92,10 +93,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   cucumber
   factory_bot
   faraday (~> 0.9.2)
   jbuilder (~> 2.7)
+  rake
   rspec (~> 3.4)
   simplecov
   sqlite3
