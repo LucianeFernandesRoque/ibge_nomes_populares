@@ -10,9 +10,9 @@
   end
 
   def menu
-    puts "[#{VIEW}]Ranking dos nomes por UF"
+    puts "[#{VIEW}]Digite a sigla da Uf que deseja consultar o Ranking dos nomes mais populares"
       #Listar todas UFs e obter a sigla da UF que o usuário deseja consultar
-    puts "[2] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
+    puts "[#{VIEW}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
     puts "[3] Verificar a frequência do uso de um nome"
     puts "[4] Sair"
 
@@ -21,14 +21,19 @@
 
   end
 
+  def clear
+    system('clear')
+  end
 
-  
+
+  clear
   puts welcome
   option = menu
 
   while option != EXIT
     if  option == VIEW 
       IbgeDados.estados_all
+  
     break
 end   
 end
