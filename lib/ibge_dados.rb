@@ -1,6 +1,7 @@
 require 'faraday'
 require 'sqlite3'
 require 'json'
+
 class IbgeDados
     attr_accessor  :id, :sigla , :nome,:cidade_id
   def initialize
@@ -19,7 +20,7 @@ class IbgeDados
     dados = dados[:id],dados[:sigla],dados[:nome]     
   end 
   end
-  p  self.estados_all
+
   def self.municipios_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
     json = JSON.parse(response.body, symbolize_names: true)
