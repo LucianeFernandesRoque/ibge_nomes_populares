@@ -1,5 +1,5 @@
 require 'faraday'
-require 'sqlite3'
+require 'terminal-table'
 require 'json'
 
 class IbgeDados
@@ -15,13 +15,13 @@ class IbgeDados
 
 
   def self.estados_all
-    estados = []
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome') 
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |dados|
     dados = dados[:id],dados[:sigla],dados[:nome]    
   end 
   end    
+  puts IbgeDados.estados_all
 
   def self.municipios_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
@@ -30,5 +30,4 @@ class IbgeDados
     cidades = cidades[:id],cidades[:nome],cidades[:microrregiao][:mesorregiao][:UF][:id]  
   end
   end
-  p IbgeDados.municipios_all
 end
