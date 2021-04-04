@@ -15,9 +15,13 @@ class RankingNomes
   end
   
   def self.nomes_all
-    response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/joao?groupBy=UF') 
-    puts response.body
+    response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=35') 
+    json = JSON.parse(response.body, symbolize_names: true)
+    json.map do |nomes|
+    nomes = nomes[:nome],nomes[:id]
   end
+  end
+    print RankingNomes.nomes_all
 end
 
 
