@@ -2,7 +2,7 @@ require 'io/console'
 require_relative 'ibge_dados'
   
 VIEW = 1
-SEARCH = 2
+VIEW_CIDADES = 2
 INSERT = 3
 EXIT = 4
 
@@ -15,7 +15,7 @@ EXIT = 4
   def menu
     puts '->->->->->->->->->M E N U ->->->->->->->->->->'
     puts "[#{VIEW}]Ranking dos nomes mais populares"
-    puts "[#{SEARCH}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
+    puts "[#{VIEW_CIDADES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
     puts "[3] Verificar a frequência do uso de um nome"
     puts "[#{EXIT}] Sair"
     puts '->->->->->->->->->->->->->->->->->->->->->->->'
@@ -45,8 +45,9 @@ end
   while option != 4
     if  option == VIEW 
    puts IbgeDados.tables_estado
-    elsif option == VIEW
-   puts IbgeDados.tables_municipios
+    break
+    elsif option == VIEW_CIDADES
+   puts IbgeDados.tables_municipios_all
     break
 
 end   

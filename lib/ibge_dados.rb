@@ -28,15 +28,14 @@ attr_accessor :id, :sigla, :nome
   end
 
   def self.tables_estado
-    rows = estados_all
-    table = Terminal::Table.new :rows => rows
+    rows = []
+    #table = Terminal::Table.new :rows => rows
     table = Terminal::Table.new :title => "Estados", :headings => ['Id', 'Estado', 'UF'], :rows => estados_all 
   end
 
   def self.tables_municipios_all
     rows = municipios_all
-    table = Terminal::Table.new :rows => rows
+    #table = Terminal::Table.new :rows => rows
     table = Terminal::Table.new :title => "Cidades", :headings => ['Id', 'Cidade', 'Digito_uf'], :rows => municipios_all
   end
-    print IbgeDados.tables_municipios_all
 end
