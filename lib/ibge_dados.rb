@@ -5,11 +5,12 @@ class IbgeDados
 attr_accessor :id, :sigla, :nome
 
 
-  def initialize=(id, sigla, nome)
+  def initialize=(id, sigla, nome, id_estado)
     @id = id
     @sigla = sigla
     @nome = nome
-   puts "id:'#{id}', sigla:'#{sigla}', nome:'#{nome}'"
+    @id_estado = id_estado
+   puts 
 
   end
 
@@ -21,15 +22,17 @@ attr_accessor :id, :sigla, :nome
     json.map do |dados|
     dados = dados[:id],dados[:sigla],dados[:nome]
   end
-  end    
-    
-  def self.tables
-    rows = []
-    rows = [estados_all[0],estados_all[1],estados_all[2],estados_all[3]]
-    table = Terminal::Table.new :rows => rows
-    table = Terminal::Table.new :title => "Estados", :headings => ['Id', 'Estado', 'UF'], :rows => rows  
-
   end
+
+  def self.tables_estado
+    rows = estados_all
+    table = Terminal::Table.new :rows => rows
+    table = Terminal::Table.new :title => "Estados", :headings => ['Id', 'Estado', 'UF'], :rows => estados_all 
+  end
+  end
+  
+  
+
 
   def self.municipios_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
@@ -38,4 +41,3 @@ attr_accessor :id, :sigla, :nome
     cidades = cidades[:id],cidades[:nome],cidades[:microrregiao][:mesorregiao][:UF][:id]  
   end
   end
-end

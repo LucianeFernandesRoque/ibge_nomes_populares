@@ -1,9 +1,9 @@
 require 'io/console'
 require_relative 'ibge_dados'
   
-INSERT = 1
-VIEW = 2
-SEARCH = 3
+VIEW = 1
+SEARCH = 2
+INSERT = 3
 EXIT = 4
 
   def welcome
@@ -14,8 +14,8 @@ EXIT = 4
 
   def menu
     puts '->->->->->->->->->M E N U ->->->->->->->->->->'
-    puts "[#{INSERT}]Ranking dos nomes mais populares"
-    puts "[#{VIEW}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
+    puts "[#{VIEW}]Ranking dos nomes mais populares"
+    puts "[#{SEARCH}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
     puts "[3] Verificar a frequência do uso de um nome"
     puts "[#{EXIT}] Sair"
     puts '->->->->->->->->->->->->->->->->->->->->->->->'
@@ -23,6 +23,15 @@ EXIT = 4
     print 'Escolha uma opção: '
     gets.to_i 
   end
+
+  def search_states
+    print 'Digite a siga do estado: '
+    term = gets.chomp
+    estados_all = tables_estado.filter do |item|
+    item.include? term
+  end
+    print_items(estados_all)
+end
 
   def clear
     system('clear')
@@ -34,8 +43,8 @@ EXIT = 4
   option = menu
 
   while option != 4
-    if  option == INSERT 
-   puts IbgeDados.tables
+    if  option == VIEW 
+   puts IbgeDados.tables_estado
     elsif option == VIEW
    puts IbgeDados.municipios_all
     break
