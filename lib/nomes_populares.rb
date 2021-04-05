@@ -46,7 +46,7 @@ end
     if  option == VIEW 
    puts IbgeDados.tables_estado
     elsif option == VIEW
-   puts IbgeDados.municipios_all
+   puts IbgeDados.tables_municipios
     break
 
 end   
