@@ -1,9 +1,10 @@
 require 'io/console'
 require_relative 'ibge_dados'
+require_relative 'ranking_nomes'
   
 VIEW = 1
 VIEW_CIDADES = 2
-INSERT = 3
+VIEW_NOMES = 3
 EXIT = 4
 
   def welcome
@@ -14,9 +15,9 @@ EXIT = 4
 
   def menu
     puts '->->->->->->->->->M E N U ->->->->->->->->->->'
-    puts "[#{VIEW}]Ranking dos nomes mais populares"
+    puts "[#{VIEW}]Ranking dos nomes mais populares por UFs"
     puts "[#{VIEW_CIDADES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
-    puts "[3] Verificar a frequência do uso de um nome"
+    puts "[#{VIEW_NOMES}] Verificar a frequência do uso de um nome"
     puts "[#{EXIT}] Sair"
     puts '->->->->->->->->->->->->->->->->->->->->->->->'
 
@@ -48,6 +49,9 @@ end
     break
     elsif option == VIEW_CIDADES
    puts IbgeDados.tables_municipios_all
+    break
+    elsif option == VIEW_NOMES
+   puts RankingNomes.tables_nomes_all
     break
 
 end   
