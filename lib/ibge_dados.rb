@@ -1,6 +1,7 @@
 require 'faraday'
 require 'terminal-table'
 require 'json'
+
 class IbgeDados
   attr_accessor :id, :sigla, :nome
 
@@ -14,7 +15,7 @@ class IbgeDados
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |dados|
-      dados = dados[:id], dados[:sigla], dados[:nome]
+    dados = dados[:id], dados[:sigla], dados[:nome]
     end
   end
 
@@ -22,9 +23,11 @@ class IbgeDados
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |cidades|
-      cidades = cidades[:id], cidades[:nome], cidades[:microrregiao][:mesorregiao][:UF][:id]
+    cidades = cidades[:id], cidades[:nome], cidades[:microrregiao][:mesorregiao][:UF][:id]
     end
   end
+        puts IbgeDados.municipios_all
+
 
   def self.tables_estado
     rows = []

@@ -1,5 +1,6 @@
 require 'terminal-table'
 require_relative 'ibge_dados'
+require_relative 'ranking_nomes'
 require 'faraday'
 require 'sqlite3'
 require 'json'
@@ -23,16 +24,14 @@ class RankingNomes
     response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=#{id}")
     json = JSON.parse(response.body, symbolize_keys: true)
     json.map do |ranking|
-      ranking.dig('res').map do |hash|
-        hash.fetch_values('nome', 'frequencia', 'ranking')
+      ranking.dig('res').map do |nomes|
+        nomes = nomes.fetch_values('nome', 'ranking', 'frequencia')
       end
     end
   end
 
-  def self.tables_nomes_all
+  def self.tables_nomes
     rows = []
-    # table = Terminal::Table.new :rows => nomes_all
-    table = Terminal::Table.new title: 'Ranking por UF', headings: %w[Nome Frequencia Ranking],
-                                rows: nomes_all
+    table = Terminal::Table.new title: 'Ranking', headings: ['Nome, ranking, frequencia'], rows: nomes_all
   end
 end

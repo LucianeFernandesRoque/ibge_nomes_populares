@@ -29,7 +29,7 @@ EXIT = 4
     term = gets.chomp
     estados_all = tables_estado.filter do |item|
     item.include? term
-  end
+    end
     print_items(estados_all)
   end
 
@@ -49,7 +49,7 @@ while option != 4
     puts IbgeDados.tables_municipios_all
     break
   elsif option == VIEW_NOMES
-    puts RankingNomes.tables_nomes_all
+    puts RankingNomes.tables_nomes
     break
 
   end
