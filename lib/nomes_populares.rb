@@ -1,7 +1,8 @@
 require 'io/console'
 require_relative 'ibge_dados'
 require_relative 'ranking_nomes'
-  
+require 'terminal-table'
+
 VIEW = 1
 VIEW_CIDADES = 2
 VIEW_NOMES = 3
@@ -11,18 +12,16 @@ EXIT = 4
     'Bem vindo ao sistema nomes mais comuns do Brasil'
   end
 
-
-
   def menu
     puts '->->->->->->->->->M E N U ->->->->->->->->->->'
-    puts "[#{VIEW}]Ranking dos nomes mais populares por UFs"
+    puts "[#{VIEW}]Digita a sigla da UF para consultar a frequencia do nome"
     puts "[#{VIEW_CIDADES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
     puts "[#{VIEW_NOMES}] Verificar a frequência do uso de um nome"
     puts "[#{EXIT}] Sair"
     puts '->->->->->->->->->->->->->->->->->->->->->->->'
 
     print 'Escolha uma opção: '
-    gets.to_i 
+    gets.to_i
   end
 
   def search_states
@@ -32,27 +31,26 @@ EXIT = 4
     item.include? term
   end
     print_items(estados_all)
-end
-
-  def clear
-    system('clear')
   end
 
+def clear
+  system('clear')
+end
 
-  clear
-  puts welcome
-  option = menu
+clear
+puts welcome
+option = menu
 
-  while option != 4
-    if  option == VIEW 
-   puts IbgeDados.tables_estado
+while option != 4
+  if  option == VIEW
+    puts IbgeDados.tables_estado
     break
-    elsif option == VIEW_CIDADES
-   puts IbgeDados.tables_municipios_all
+  elsif option == VIEW_CIDADES
+    puts IbgeDados.tables_municipios_all
     break
-    elsif option == VIEW_NOMES
-   puts RankingNomes.tables_nomes_all
+  elsif option == VIEW_NOMES
+    puts RankingNomes.tables_nomes_all
     break
 
-end   
+  end
 end

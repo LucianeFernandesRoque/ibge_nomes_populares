@@ -5,9 +5,9 @@ require 'sqlite3'
 require 'json'
 
 class RankingNomes
-  attr_accessor  :regiao, :sexo, :nome, :frequencia, :ranking
+  attr_accessor :regiao, :sexo, :nome, :frequencia, :ranking
 
-  def initialize(localidade,sexo,nome,frequencia,ranking)
+  def initialize(localidade, sexo, nome, frequencia, ranking)
     @localidade = localidade
     @sexo = sexo
     @nome = nome
@@ -15,22 +15,24 @@ class RankingNomes
     @ranking = ranking
     @id = id
   end
-  
+
   def self.nomes_all
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=')
     print 'Digite o id da localidade?'
     id = gets.chomp
-    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=#{id}") 
-    json = JSON.parse(response.body, symbolize_names: true)
-    json.map do |nomes|
-    nomes = nomes[:localidade],nomes[:res]
+    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=#{id}")
+    json = JSON.parse(response.body, symbolize_keys: true)
+    json.map do |ranking|
+      ranking.dig('res').map do |hash|
+        hash.fetch_values('nome', 'frequencia', 'ranking')
+      end
     end
   end
 
   def self.tables_nomes_all
     rows = []
-    table = Terminal::Table.new :title => "Ranking por UF", :headings => ['Nome', 'Frequencia', 'Ranking'], :rows => nomes_all
+    # table = Terminal::Table.new :rows => nomes_all
+    table = Terminal::Table.new title: 'Ranking por UF', headings: %w[Nome Frequencia Ranking],
+                                rows: nomes_all
   end
-
-
 end
