@@ -29,7 +29,7 @@ EXIT = 4
     term = gets.chomp
     estados_all = tables_estado.filter do |item|
     item.include? term
-    end
+  end
     print_items(estados_all)
   end
 

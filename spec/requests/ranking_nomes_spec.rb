@@ -3,24 +3,19 @@ require 'ibge_dados'
 require 'json'
 require 'spec_helper'
 
-  describe 'RankingNomes' do
-    context 'validação da api nomes' do
-
-      it 'fazer uma requisão da apinomes e validar o status' do
-
+describe 'RankingNomes' do
+  context 'validação da api nomes' do
+    it 'fazer uma requisão da apinomes e validar o status' do
       response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade?')
 
       expect(response.status).to eq(200)
       expect(response.status).not_to eq(404)
+    end
   end
-end
 
-  
   it 'não pode retornar nulo' do
-
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade?')
 
-  expect(response.body).not_to be_nil
+    expect(response.body).not_to be_nil
   end
 end
-
