@@ -14,7 +14,7 @@ EXIT = 4
 
   def menu
     puts '->->->->->->->->->M E N U ->->->->->->->->->->'
-    puts "[#{VIEW}]Digita a sigla da UF para consultar a frequencia do nome"
+    puts "[#{VIEW}]Escolha a Uf que deseja visualizar os nomes mais comuns"
     puts "[#{VIEW_CIDADES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
     puts "[#{VIEW_NOMES}] Verificar a frequência do uso de um nome"
     puts "[#{EXIT}] Sair"
@@ -37,13 +37,20 @@ def clear
   system('clear')
 end
 
+
+def wait_and_clear
+  wait_keypress
+  clear
+end
+
 clear
 puts welcome
 option = menu
 
 while option != 4
   if  option == VIEW
-    puts IbgeDados.tables_estado
+    print IbgeDados.tables_estado
+    puts RankingNomes.tables_nomes
     break
   elsif option == VIEW_CIDADES
     puts IbgeDados.tables_municipios_all

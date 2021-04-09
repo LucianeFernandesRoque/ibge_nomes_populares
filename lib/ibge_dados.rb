@@ -1,11 +1,12 @@
 require 'faraday'
 require 'terminal-table'
 require 'json'
+require_relative 'ranking_nomes'
 
 class IbgeDados
   attr_accessor :id, :sigla, :nome
 
-  def initialize=(id, sigla, nome, _id_estado, _municipio)
+  def initialize=(id, sigla, nome)
     @id = id
     @sigla = sigla
     @nome = nome
@@ -37,7 +38,7 @@ class IbgeDados
 
   def self.tables_municipios_all
     rows = []
-    # table = Terminal::Table.new :rows => rows
+    table = Terminal::Table.new :rows => rows
     table = Terminal::Table.new title: 'Cidades', headings: %w[Id Cidade Digito_uf], rows: municipios_all
   end
 end

@@ -8,7 +8,7 @@ require 'json'
 class RankingNomes
   attr_accessor :regiao, :sexo, :nome, :frequencia, :ranking
 
-  def initialize(localidade, sexo, nome, frequencia, ranking)
+  def initialize=(localidade, sexo, nome, frequencia, ranking)
     @localidade = localidade
     @sexo = sexo
     @nome = nome
@@ -24,7 +24,7 @@ class RankingNomes
     response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=#{id}")
     json = JSON.parse(response.body, symbolize_keys: true)
     json.map do |ranking|
-      ranking.dig('res').map do |nomes|
+      ranking['res'].map do |nomes|
         nomes = nomes.fetch_values('nome', 'ranking', 'frequencia')
       end
     end
@@ -32,6 +32,6 @@ class RankingNomes
 
   def self.tables_nomes
     rows = []
-    table = Terminal::Table.new title: 'Ranking', headings: ['Nome, ranking, frequencia'], rows: nomes_all
+    table = Terminal::Table.new title: 'Nomes', headings: %w[nome ranking frequencia], rows: nomes_all
   end
 end
