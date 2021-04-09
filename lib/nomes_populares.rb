@@ -50,7 +50,7 @@ option = menu
 while option != 4
   if  option == VIEW
     print IbgeDados.tables_estado
-    puts RankingNomes.tables_nomes
+    puts RankingNomes.nomes_sexo
     break
   elsif option == VIEW_CIDADES
     puts IbgeDados.tables_municipios_all

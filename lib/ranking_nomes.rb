@@ -10,15 +10,16 @@ class RankingNomes
 
   def initialize=(localidade, sexo, nome, frequencia, ranking)
     @localidade = localidade
-    @sexo = sexo
+    @sexo = []
     @nome = nome
     @frequencia = frequencia
     @ranking = ranking
     @id = id
   end
 
+
+
   def self.nomes_all
-    response = Faraday.get('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=')
     print 'Digite o id da localidade?'
     id = gets.chomp
     response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?localidade=#{id}")
@@ -29,9 +30,14 @@ class RankingNomes
       end
     end
   end
-
-  def self.tables_nomes
-    rows = []
-    table = Terminal::Table.new title: 'Nomes', headings: %w[nome ranking frequencia], rows: nomes_all
-  end
+  def self.nomes_sexo
+    id = gets.chomp
+    print 'Digite M ou F '
+    sexo = gets.chomp
+    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?=#{sexo}?localidade=#{id}")
+    json = JSON.parse(response.body, symbolize_keys: true)
+    json.map do |ranking|
+      ranking = ranking
+      end
+    end
 end
