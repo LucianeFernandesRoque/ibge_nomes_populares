@@ -25,7 +25,7 @@ class IbgeDados
     response = Faraday.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome')
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |cidades|
-    cidades = cidades[:id], cidades[:nome], cidades[:microrregiao][:mesorregiao][:UF][:id]
+    @cidades = cidades[:id], cidades[:nome], cidades[:microrregiao][:mesorregiao][:UF][:id]
     end
   end
 
