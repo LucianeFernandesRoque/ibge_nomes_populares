@@ -49,7 +49,7 @@ option = menu
 while option != 4
   if  option == VIEW
     print IbgeDados.tables_estado
-    print RankingNomes.nomes_all
+    print RankingNomes.table_nomes
     break
   elsif option == VIEW_CIDADES
     puts IbgeDados.tables_municipios_all

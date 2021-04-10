@@ -14,3 +14,4 @@ gem 'rspec', '~> 3.4'
 gem 'simplecov', require: false, group: :test
 gem 'sqlite3'
 gem 'terminal-table'
+gem 'tabulo', '~> 1.0'
