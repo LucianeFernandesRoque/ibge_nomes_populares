@@ -1,3 +1,4 @@
+require 'colorize'
 require 'terminal-table'
 require_relative 'ibge_dados'
 require_relative 'ranking_nomes'
@@ -17,9 +18,9 @@ class RankingNomes
   end
 
   def self.nomes_all
-    print 'Digite o id da uf?'
-    id = gets.chomp
-    p 'Selecione F ou M'
+    puts 'Digite o id da uf?'
+    puts id = gets.chomp
+    puts 'Selecione F ou M'
     sexo = gets.chomp
     response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?sexo=#{sexo}&localidade=#{id}")
     json = JSON.parse(response.body, symbolize_names: true)
@@ -30,8 +31,17 @@ class RankingNomes
     end
   end
 
+  def self.frequencia_decadas
+    #puts "Digite o nome para obter a frequencia por décadas"
+    #puts nome = gets.chomp
+    #json = JSON.parse(response.body, symbolize_names: true)
+    #json.map do |decadas|
+  end
+  puts RankingNomes.frequencia_decadas
+
   def self.table_nomes
-    rows = []
-    table = Terminal::Table.new title: 'Nomes', headings: %w[Nome ranking Frequencia], rows: nomes_all.to_a[0]
+    @rows = []
+    @table = Terminal::Table.new title: "Nomes mais comuns da regiao".blue, headings: ['Nome'.cyan, 'ranking'.cyan, ' Frequencia'.cyan],
+                                 rows: nomes_all.to_a[0]
   end
 end

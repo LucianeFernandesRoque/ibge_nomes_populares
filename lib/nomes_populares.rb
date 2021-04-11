@@ -3,9 +3,9 @@ require_relative 'ibge_dados'
 require_relative 'ranking_nomes'
 require 'terminal-table'
 
-VIEW = 1
-VIEW_CIDADES = 2
-VIEW_NOMES = 3
+VIEW_STATES = 1
+VIEW_CITIES = 2
+INSERT_NOMES = 3
 EXIT = 4
 
 def welcome
@@ -13,25 +13,17 @@ def welcome
 end
 
 def menu
-  puts '->->->->->->->->->M E N U ->->->->->->->->->->'
-  puts "[#{VIEW}]Escolha a Uf que deseja visualizar os nomes mais comuns"
-  puts "[#{VIEW_CIDADES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
-  puts "[#{VIEW_NOMES}] Verificar a frequência do uso de um nome"
+  puts '->->->->->->->->->M E N U ->->->->->->->->->->'.red
+  puts "[#{VIEW_STATES}]Escolha a UF que deseja visualizar o ranking dos nomes mais comuns"
+  puts "[#{VIEW_CITIES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
+  puts "[#{INSERT_NOMES}] Digite um ou mais nomes(separando por vírgula)para consultar a frequência de um nome ao longo dos anos"
   puts "[#{EXIT}] Sair"
-  puts '->->->->->->->->->->->->->->->->->->->->->->->'
+  puts '->->->->->->->->->->->->->->->->->->->->->->->'.red
 
   print 'Escolha uma opção: '
   gets.to_i
 end
 
-def search_states
-  print 'Digite a siga do estado: '
-  term = gets.chomp
-  estados_all = tables_estado.filter do |item|
-    item.include? term
-  end
-  print_items(estados_all)
-end
 
 def clear
   system('clear')
@@ -47,15 +39,15 @@ puts welcome
 option = menu
 
 while option != 4
-  if  option == VIEW
-    print IbgeDados.tables_estado
-    print RankingNomes.table_nomes
+  if  option == VIEW_STATES
+    puts IbgeDados.tables_estado
+    puts RankingNomes.table_nomes
     break
-  elsif option == VIEW_CIDADES
+  elsif option == VIEW_CITIES
     puts IbgeDados.tables_municipios_all
     puts RankingNomes.table_nomes
     break
-  elsif option == VIEW_NOMES
+  elsif option == INSERT_NOMES
     # puts RankingNomes.tables_nomes
     break
   end
