@@ -13,12 +13,12 @@ def welcome
 end
 
 def menu
-  puts '->->->->->->->->->M E N U ->->->->->->->->->->'.red
+  puts '->->->->->->->->->M E N U ->->->->->->->->->->'.blue
   puts "[#{VIEW_STATES}]Escolha a UF que deseja visualizar o ranking dos nomes mais comuns"
   puts "[#{VIEW_CITIES}] EScolha uma cidade para visualizar o ranking dos nomes mais comuns"
   puts "[#{INSERT_NOMES}] Digite um ou mais nomes(separando por vírgula)para consultar a frequência de um nome ao longo dos anos"
   puts "[#{EXIT}] Sair"
-  puts '->->->->->->->->->->->->->->->->->->->->->->->'.red
+  puts '->->->->->->->->->->->->->->->->->->->->->->->'.blue
 
   print 'Escolha uma opção: '
   gets.to_i
