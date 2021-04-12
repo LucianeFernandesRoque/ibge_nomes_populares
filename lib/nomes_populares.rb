@@ -48,7 +48,7 @@ while option != 4
     puts RankingNomes.table_nomes
     break
   elsif option == INSERT_NOMES
-    puts RankingNomes.frequencia_decadas
+    puts RankingNomes.table_decadas
     break
   end
 end
