@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
-require 'simplecov'
-SimpleCov.start
+set -e
+
+bundle install
+
+echo
+echo '== Tudo configurado, pode iniciar ;) =='
