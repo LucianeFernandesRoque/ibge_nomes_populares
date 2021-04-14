@@ -2,6 +2,8 @@ require 'io/console'
 require_relative 'ibge_estados'
 require_relative 'ibge_cidades'
 require_relative 'ranking_nomes'
+require_relative 'frequencia_nomes'
+
 require 'terminal-table'
 require 'colorize'
 require 'json'
@@ -50,7 +52,7 @@ while option != 4
     puts RankingNomes.table_nomes
     break
   elsif option == INSERT_NOMES
-    puts RankingNomes.table_decadas
-    break
+    puts FrequenciaNomes.table_decadas
+  break
   end
 end
