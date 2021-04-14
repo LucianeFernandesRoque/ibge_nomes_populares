@@ -1,9 +1,9 @@
 require 'io/console'
+require_relative 'ibge_estados'
 require_relative 'ibge_cidades'
 require_relative 'ranking_nomes'
 require 'terminal-table'
 require 'colorize'
-
 require 'json'
 
 VIEW_STATES = 1
@@ -42,7 +42,7 @@ option = menu
 
 while option != 4
   if  option == VIEW_STATES
-    puts IbgeDados.tables_estado
+    puts IbgeEstados.table_estado
     puts RankingNomes.table_nomes
     break
   elsif option == VIEW_CITIES

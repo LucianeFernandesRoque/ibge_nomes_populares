@@ -1,9 +1,8 @@
 require 'faraday'
 require 'terminal-table'
 require 'json'
-require_relative 'ranking_nomes'
 
-class IbgeDados
+class IbgeEstados
   attr_accessor :id, :sigla, :nome
 
   def initialize=(id, sigla, nome)
@@ -20,11 +19,9 @@ class IbgeDados
     end
   end
 
-  def self.tables_estado
+  def self.table_estado
     @rows = []
     @table = Terminal::Table.new rows: @rows
     @table = Terminal::Table.new title: 'Estados', headings: %w[Id Estado UF], rows: estados_all
   end
-
-
 end

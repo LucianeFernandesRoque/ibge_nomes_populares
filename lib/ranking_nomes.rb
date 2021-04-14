@@ -1,6 +1,7 @@
 require 'colorize'
 require 'terminal-table'
-require_relative 'ibge_dados'
+require_relative 'ibge_estados'
+require_relative 'ibge_cidades'
 require 'faraday'
 require 'json'
 
