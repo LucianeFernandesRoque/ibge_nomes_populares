@@ -1,5 +1,5 @@
 require 'io/console'
-require_relative 'ibge_dados'
+require_relative 'ibge_cidades'
 require_relative 'ranking_nomes'
 require 'terminal-table'
 require 'colorize'
@@ -46,7 +46,7 @@ while option != 4
     puts RankingNomes.table_nomes
     break
   elsif option == VIEW_CITIES
-    puts IbgeDados.tables_municipios_all
+    puts IbgeCidades.table_cidades_all
     puts RankingNomes.table_nomes
     break
   elsif option == INSERT_NOMES

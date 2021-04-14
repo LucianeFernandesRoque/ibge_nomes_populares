@@ -43,7 +43,6 @@ class RankingNomes
       end
     end
   end
-puts RankingNomes.frequencia_decadas
   #def self.table_decadas
    # @rows = []
    # @table = Terminal::Table.new title: 'Frequencia por decada'.blue, headings: ['Nome'.cyan, 'frequencia'.cyan, 'Periodo'.cyan],
