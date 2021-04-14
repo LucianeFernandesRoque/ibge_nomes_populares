@@ -7,7 +7,7 @@ require 'json'
 class RankingNomes
   attr_accessor :regiao, :sexo, :nome, :frequencia, :ranking
 
-  def initialize=(localidade, _sexo, nome, frequencia, ranking, nome_frequencia)
+  def initialize=(localidade, sexo, nome, frequencia, ranking)
     @localidade = localidade
     @sexo = sexo
     @nome = nome
@@ -15,6 +15,7 @@ class RankingNomes
     @ranking = ranking
     @id = id
     @nome_frequencia = nome_frequencia
+    @rows = rows
   end
 
   def self.nomes_all
@@ -32,27 +33,27 @@ class RankingNomes
   end
 
   def self.frequencia_decadas
-  
     puts 'Digite o nome para obter a frequencia por décadas'
-    nome = gets.chomp 
-    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/#{nome}%7C#{nome}")
+    nome = gets.chomp
+    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/#{"nome"}")
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |decadas|
-        @decadas = decadas[:res].map do |frequencia|
-    @frequencia = nome, frequencia[:frequencia], frequencia[:periodo]
+      @decadas = decadas[:res].map do |frequencia|
+        @frequencia = nome, frequencia[:frequencia], frequencia[:periodo]
       end
     end
   end
-
-  def self.table_decadas
-    @rows = []
-    @table = Terminal::Table.new title: 'Frequencia por decada'.blue, headings: ['Nome'.cyan, 'frequencia'.cyan, 'Periodo'.cyan],
-                                                                       rows: frequencia_decadas.to_a[0]
-  end
+puts RankingNomes.frequencia_decadas
+  #def self.table_decadas
+   # @rows = []
+   # @table = Terminal::Table.new title: 'Frequencia por decada'.blue, headings: ['Nome'.cyan, 'frequencia'.cyan, 'Periodo'.cyan],
+    #                             rows: frequencia_decadas.to_a[0]
+  #end
 
   def self.table_nomes
     @rows = []
-    @table = Terminal::Table.new title: 'Nomes mais comuns da regiao'.blue, headings: ['Nome'.cyan, 'ranking'.cyan, ' Frequencia'.cyan],
+    @table = Terminal::Table.new rows: @rows
+    @table = Terminal::Table.new title: 'Nomes mais comuns da regiao'.blue, headings: ['Nome'.cyan, 'ranking'.cyan, 'Frequencia'.cyan],
                                  rows: nomes_all.to_a[0]
   end
 end

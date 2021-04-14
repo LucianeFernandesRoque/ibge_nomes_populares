@@ -2,6 +2,9 @@ require 'io/console'
 require_relative 'ibge_dados'
 require_relative 'ranking_nomes'
 require 'terminal-table'
+require 'colorize'
+
+require 'json'
 
 VIEW_STATES = 1
 VIEW_CITIES = 2
@@ -23,7 +26,6 @@ def menu
   print 'Escolha uma opção: '
   gets.to_i
 end
-
 
 def clear
   system('clear')
