@@ -8,7 +8,7 @@ class FrequenciaNomes
   attr_accessor :nome, :frequencia, :periodo
 
   def initialize=(nome, frequencia, periodo, decadas)
-    @nome = gets.chomp
+    @nome = Nomes.all
     @frequencia = frequencia
     @periodo = periodo
     @decadas = decadas
@@ -20,15 +20,16 @@ class FrequenciaNomes
     response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/#{nome}")
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |decadas|
-      @decadas = decadas[:res].map do |frequencia|
-        @frequencia = nome, frequencia[:frequencia], frequencia[:periodo]
-      end
-      end
+    @decadas = decadas[:res].map do |frequencia|
+    @frequencia = nome, frequencia[:frequencia], frequencia[:periodo]
+    end
+    end
   end
 
   def self.table_decadas
-    @rows = []
-    @table = Terminal::Table.new title: 'Frequencia por decada'.blue, headings: ['Nome'.cyan, 'frequencia'.cyan, 'Periodo'.cyan],
-                                 rows: frequencia_decadas.to_a[0]
+   @rows = []
+   @table = Terminal::Table.new rows: @rows
+   @table = Terminal::Table.new title: 'Frequencia por decada'.blue, headings: ['Nome'.cyan, 'frequencia'.cyan, 'Periodo'.cyan],
+                                 rows: frequencia_decadas
   end
 end

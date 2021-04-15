@@ -1,5 +1,5 @@
 require 'faraday'
-require 'ibge_dados'
+require 'ibge_cidades'
 require 'json'
 require 'spec_helper'
 
