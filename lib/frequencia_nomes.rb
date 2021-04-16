@@ -17,8 +17,7 @@ class FrequenciaNomes
   def self.frequencia_decadas
     puts 'Digite o nome para obter a frequencia por décadas'
     nome = gets.chomp
-    q = 'nome'
-    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/#{q}%7C")
+    response = Faraday.get("https://servicodados.ibge.gov.br/api/v2/censos/nomes/#{nome}")
     json = JSON.parse(response.body, symbolize_names: true)
     json.map do |decadas|
     @decadas = decadas[:res].map do |frequencia|
