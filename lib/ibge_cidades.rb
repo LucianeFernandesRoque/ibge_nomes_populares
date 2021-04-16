@@ -18,7 +18,6 @@ class IbgeCidades
     @cidades = cidades[:id], cidades[:nome], cidades[:microrregiao][:mesorregiao][:UF][:id]
     end
   end
-    puts IbgeCidades.cidades_all.length
 
   def self.table_cidades_all
     @rows = []

@@ -12,8 +12,8 @@ describe 'IbgeCidades' do
     end
   end
 
-    it 'cant not return null' do
-      response = Faraday.get 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome'
-      expect(response.body).not_to be_nil
-    end 
+  it 'cant not return null' do
+    response = Faraday.get 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome'
+    expect(response.body).not_to be_nil
+  end
 end
