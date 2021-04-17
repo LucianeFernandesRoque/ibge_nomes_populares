@@ -1,7 +1,3 @@
-require 'faraday'
-require 'terminal-table'
-require 'json'
-
 class IbgeEstados
   attr_accessor :id, :sigla, :nome
 

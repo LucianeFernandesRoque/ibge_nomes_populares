@@ -3,7 +3,6 @@ require_relative 'ibge_estados'
 require_relative 'ibge_cidades'
 require_relative 'ranking_nomes'
 require_relative 'frequencia_nomes'
-
 require 'terminal-table'
 require 'colorize'
 require 'json'
